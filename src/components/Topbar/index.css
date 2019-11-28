@@ -1,0 +1,14 @@
+.Topbar .NavItem a {
+  color: inherit;
+  text-decoration: inherit;
+  padding: 10px;
+}
+
+.Topbar li {
+  list-style: none;
+}
+
+.Topbar ul {
+  display: flex;
+  padding: 0;
+}
