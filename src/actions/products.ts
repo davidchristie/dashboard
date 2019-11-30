@@ -1,4 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
+
 import Product from "../types/Product";
 
 export const PRODUCT_CREATED = "PRODUCT_CREATED";

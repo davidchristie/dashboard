@@ -1,5 +1,6 @@
 import { fireEvent } from "@testing-library/react";
 import React from "react";
+
 import { productCreated } from "../../actions/products";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";

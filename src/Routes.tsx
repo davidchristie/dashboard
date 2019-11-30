@@ -1,5 +1,6 @@
 import React from "react";
-import { Switch, Route } from "react-router";
+import { Route, Switch } from "react-router";
+
 import CreateProductPage from "./pages/CreateProductPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import OverviewPage from "./pages/OverviewPage";

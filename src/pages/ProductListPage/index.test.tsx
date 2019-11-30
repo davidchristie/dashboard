@@ -1,7 +1,8 @@
 import { fireEvent } from "@testing-library/react";
 import React from "react";
-import state from "../../testing/data/state";
+
 import { itHasHeading } from "../../testing/content";
+import state from "../../testing/data/state";
 import { itHasNavigationLinks } from "../../testing/links";
 import { describeRender } from "../../testing/render";
 import ProductListPage from ".";

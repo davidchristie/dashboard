@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
+
 import Heading from "../../components/Heading";
 import Topbar from "../../components/Topbar";
 import { productDetailsSelector } from "../../selectors/products";

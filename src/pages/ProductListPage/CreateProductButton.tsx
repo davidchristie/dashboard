@@ -1,6 +1,7 @@
+import "./CreateProductButton.css";
+
 import React from "react";
 import { Link } from "react-router-dom";
-import "./CreateProductButton.css";
 
 const CreateProductButton: React.FunctionComponent = () => (
   <div className="CreateProductButton">
