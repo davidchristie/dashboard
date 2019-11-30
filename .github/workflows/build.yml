@@ -13,6 +13,22 @@ jobs:
       - name: Validate code style
         run: npm run lint
       - name: Run unit tests
-        run: CI=true npm test -- --coverage --verbose
+        run: npm run coverage
       - name: Build static assets
         run: npm run build
+
+  coverage:
+    needs: [build]
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Report code coverage
+        uses: paambaati/codeclimate-action@v2.3.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run coverage
+          debug: "true"

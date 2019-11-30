@@ -57,6 +57,7 @@
   "name": "dashboard",
   "private": true,
   "scripts": {
+    "coverage": "npm test -- --coverage --watchAll=false",
     "build": "react-scripts build",
     "lint": "eslint src/**/*.{ts,tsx}",
     "start": "react-scripts start",
