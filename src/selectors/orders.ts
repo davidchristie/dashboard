@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { Product } from "../entities/product";
+import { Product } from "../models/product";
 import { State } from "../store";
 
 export const ordersSelector = (state: State) => state.orders;

@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import uuid from "uuid/v4";
 
-import order from "../../entities/order";
+import order from "../../models/order";
 import useFormState from "./useFormState";
 
 const CreateOrderForm: React.FunctionComponent = () => {

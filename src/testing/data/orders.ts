@@ -1,4 +1,4 @@
-import { Order } from "../../entities/order";
+import { Order } from "../../models/order";
 
 export const order1: Order = {
   id: "9a1cebf8-a238-4fe9-8dff-85abe3dfcb75",

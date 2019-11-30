@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import uuid from "uuid/v4";
 
-import product from "../../entities/product";
+import product from "../../models/product";
 import useFormState from "./useFormState";
 
 const CreateProductForm: React.FunctionComponent = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import product, { Product } from "../../entities/product";
+import product, { Product } from "../../models/product";
 
 interface Props {
   product: Product;

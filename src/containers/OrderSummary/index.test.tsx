@@ -1,7 +1,7 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 
-import order from "../../entities/order";
+import order from "../../models/order";
 import { order1 } from "../../testing/data/orders";
 import { AllProviders, store } from "../../testing/providers";
 import OrderSummary from ".";

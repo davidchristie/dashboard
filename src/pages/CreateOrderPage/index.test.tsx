@@ -1,7 +1,7 @@
 import { fireEvent } from "@testing-library/react";
 import React from "react";
 
-import order from "../../entities/order";
+import order from "../../models/order";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";
 import { store } from "../../testing/providers";

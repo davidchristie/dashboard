@@ -1,16 +1,24 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, PayloadActionCreator } from "@reduxjs/toolkit";
 
 import Entity from "./Entity";
 
-const createEntityActions = <E extends Entity = Entity>(singular: string) => {
+export interface EntityActions<T extends Entity> {
+  created: PayloadActionCreator<T>;
+  createdActionType: string;
+  deleted: PayloadActionCreator<T>;
+  deletedActionType: string;
+}
+
+const createEntityActions = <T extends Entity>(
+  singular: string
+): EntityActions<T> => {
   const singularUpperCase = singular.toUpperCase();
   const createdActionType = `${singularUpperCase}_CREATED`;
   const deletedActionType = `${singularUpperCase}_DELETED`;
-
   return {
-    created: createAction<E>(createdActionType),
+    created: createAction<T>(createdActionType),
     createdActionType,
-    deleted: createAction<E>(deletedActionType),
+    deleted: createAction<T>(deletedActionType),
     deletedActionType
   };
 };
