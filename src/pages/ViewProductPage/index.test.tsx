@@ -1,29 +1,21 @@
 import { render, RenderResult } from "@testing-library/react";
 import React from "react";
-import { Route, BrowserRouter } from "react-router-dom";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import { Route } from "react-router-dom";
 import { product1 } from "../../testing/data/products";
-import state from "../../testing/data/state";
 import ViewProductPage from ".";
 import { itHasNavigationLinks } from "../../testing/links";
+import { AllProviders } from "../../testing/providers";
 
 const push = (url: string) => {
   window.history.pushState(undefined, "", url);
 };
 
 const renderViewProductPage = () => {
-  const store = createStore(() => state);
   return render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <Route
-          component={ViewProductPage}
-          exact
-          path={`/products/:productId`}
-        />
-      </BrowserRouter>
-    </Provider>
+    <Route component={ViewProductPage} exact path={`/products/:productId`} />,
+    {
+      wrapper: AllProviders
+    }
   );
 };
 
