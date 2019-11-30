@@ -8,12 +8,16 @@ import {
 import { EntityActions } from "./createEntityActions";
 import Entity from "./Entity";
 
-export type EntityReducer<T extends Entity> = Reducer<{
+export interface EntityState<T> {
   details: {
     [id: string]: T;
   };
   list: T[];
-}>;
+}
+
+export interface EntityReducer<T> {
+  reducer: Reducer<EntityState<T>>;
+}
 
 const createDetailsReducer = <T extends Entity>({
   createdActionType,
@@ -52,10 +56,12 @@ const createListReducer = <T extends Entity>({
 const createEntityReducer = <T extends Entity>(
   actions: EntityActions<T>
 ): EntityReducer<T> => {
-  return combineReducers({
-    details: createDetailsReducer<T>(actions),
-    list: createListReducer<T>(actions)
-  });
+  return {
+    reducer: combineReducers({
+      details: createDetailsReducer<T>(actions),
+      list: createListReducer<T>(actions)
+    })
+  };
 };
 
 export default createEntityReducer;

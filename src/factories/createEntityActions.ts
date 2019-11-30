@@ -10,11 +10,11 @@ export interface EntityActions<T extends Entity> {
 }
 
 const createEntityActions = <T extends Entity>(
-  singular: string
+  entityType: string
 ): EntityActions<T> => {
-  const singularUpperCase = singular.toUpperCase();
-  const createdActionType = `${singularUpperCase}_CREATED`;
-  const deletedActionType = `${singularUpperCase}_DELETED`;
+  const entityTypeUpperCase = entityType.toUpperCase();
+  const createdActionType = `${entityTypeUpperCase}_CREATED`;
+  const deletedActionType = `${entityTypeUpperCase}_DELETED`;
   return {
     created: createAction<T>(createdActionType),
     createdActionType,

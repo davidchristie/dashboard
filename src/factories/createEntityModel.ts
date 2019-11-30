@@ -1,21 +1,28 @@
 import createEntityActions, { EntityActions } from "./createEntityActions";
 import createEntityHooks, { EntityHooks } from "./createEntityHooks";
 import createEntityReducer, { EntityReducer } from "./createEntityReducer";
+import createEntitySelectors, {
+  EntitySelectors
+} from "./createEntitySelectors";
 import Entity from "./Entity";
 
 export type EntityModel<T extends Entity> = EntityActions<T> &
-  EntityHooks<T> & {
-    reducer: EntityReducer<T>;
+  EntityHooks<T> &
+  EntitySelectors<T> &
+  EntityReducer<T> & {
+    entityType: string;
   };
 
 const createEntityModel = <T extends Entity>(
-  singular: string
+  entityType: string
 ): EntityModel<T> => {
-  const actions = createEntityActions<T>(singular);
+  const actions = createEntityActions<T>(entityType);
   return {
     ...actions,
     ...createEntityHooks(actions),
-    reducer: createEntityReducer<T>(actions)
+    ...createEntitySelectors(entityType),
+    ...createEntityReducer<T>(actions),
+    entityType
   };
 };
 

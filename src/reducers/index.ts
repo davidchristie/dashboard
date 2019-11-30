@@ -6,7 +6,7 @@ import order from "../models/order";
 import product from "../models/product";
 
 export default combineReducers({
-  orders: order.reducer,
-  products: product.reducer,
+  order: order.reducer,
+  product: product.reducer,
   router: connectRouter(history)
 });
