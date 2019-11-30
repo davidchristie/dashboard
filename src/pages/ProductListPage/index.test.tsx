@@ -10,7 +10,7 @@ import ProductListPage from ".";
 describeRender("product list page", <ProductListPage />, getResult => {
   itHasHeading("Products", getResult);
 
-  it("displays the list of products", async () => {
+  it("displays the list of products", () => {
     state.products.list.forEach(product => {
       getResult().getByText(product.name);
     });
@@ -23,7 +23,7 @@ describeRender("product list page", <ProductListPage />, getResult => {
       fireEvent.click(getResult().getByText("Create"));
     });
 
-    it("goes to the create product page", async () => {
+    it("goes to the create product page", () => {
       expect(window.location.pathname).toBe("/products/create");
     });
   });

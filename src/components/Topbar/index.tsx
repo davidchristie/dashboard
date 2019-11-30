@@ -10,6 +10,7 @@ const Topbar = () => {
       <ul>
         <NavItem to="/">Overview</NavItem>
         <NavItem to="/products">Products</NavItem>
+        <NavItem to="/orders">Orders</NavItem>
       </ul>
     </nav>
   );

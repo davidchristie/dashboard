@@ -12,7 +12,7 @@ const describeViewProductPage = (
   url: string,
   fn: (getResult: () => RenderResult) => void
 ) => {
-  beforeEach(async () => {
+  beforeEach(() => {
     window.history.pushState(undefined, "", url);
   });
 

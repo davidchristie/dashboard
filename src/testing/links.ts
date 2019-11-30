@@ -17,4 +17,6 @@ export const itHasNavigationLinks = (getResult: () => RenderResult) => {
   itHasLink("Overview", "/", getResult);
 
   itHasLink("Products", "/products", getResult);
+
+  itHasLink("Orders", "/orders", getResult);
 };
