@@ -1,5 +1,6 @@
-import { RenderResult, render } from "@testing-library/react";
+import { render, RenderResult } from "@testing-library/react";
 import React from "react";
+
 import { AllProviders } from "./providers";
 
 export const describeRender = (

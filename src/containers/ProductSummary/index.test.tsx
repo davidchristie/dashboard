@@ -1,9 +1,10 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
-import ProductSummary from ".";
+
 import { productDeleted } from "../../actions/products";
 import { product1 } from "../../testing/data/products";
 import { AllProviders, store } from "../../testing/providers";
+import ProductSummary from ".";
 
 describe("product summary container", () => {
   let dispatch: jest.Mock;

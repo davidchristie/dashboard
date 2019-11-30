@@ -1,10 +1,10 @@
+import { product1 } from "../testing/data/products";
+import state from "../testing/data/state";
 import {
   productDetailsSelector,
   productListSelector,
   productsSelector
 } from "./products";
-import { product1 } from "../testing/data/products";
-import state from "../testing/data/state";
 
 describe("products selector", () => {
   it("selects products from state", () => {

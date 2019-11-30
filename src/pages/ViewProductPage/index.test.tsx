@@ -1,11 +1,12 @@
 import { RenderResult } from "@testing-library/react";
 import React from "react";
 import { Route } from "react-router-dom";
+
+import { itHasHeading } from "../../testing/content";
 import { product1 } from "../../testing/data/products";
 import { itHasNavigationLinks } from "../../testing/links";
 import { describeRender } from "../../testing/render";
 import ViewProductPage from ".";
-import { itHasHeading } from "../../testing/content";
 
 const describeViewProductPage = (
   url: string,

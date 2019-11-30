@@ -1,6 +1,6 @@
-import detailsReducer from ".";
 import { productCreated, productDeleted } from "../../../actions/products";
 import { product1, product2 } from "../../../testing/data/products";
+import detailsReducer from ".";
 
 describe("product list reducer", () => {
   it("adds created products to state", () => {

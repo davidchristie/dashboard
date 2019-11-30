@@ -23,6 +23,7 @@
     "@types/uuid": "3.4.6",
     "connected-react-router": "6.6.1",
     "eslint-plugin-prettier": "3.1.1",
+    "eslint-plugin-simple-import-sort": "^5.0.0",
     "history": "4.10.1",
     "prettier": "1.19.1",
     "react": "16.12.0",
@@ -38,10 +39,14 @@
   "eslintConfig": {
     "extends": "react-app",
     "plugins": [
-      "prettier"
+      "prettier",
+      "simple-import-sort"
     ],
     "rules": {
-      "prettier/prettier": "error"
+      "import/order": "off",
+      "prettier/prettier": "error",
+      "simple-import-sort/sort": "error",
+      "sort-imports": "off"
     }
   },
   "jest": {
@@ -57,8 +62,8 @@
   "name": "dashboard",
   "private": true,
   "scripts": {
-    "coverage": "npm test -- --coverage --watchAll=false",
     "build": "react-scripts build",
+    "coverage": "npm test -- --coverage --watchAll=false",
     "lint": "eslint src/**/*.{ts,tsx}",
     "start": "react-scripts start",
     "test": "react-scripts test"

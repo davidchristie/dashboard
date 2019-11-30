@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Product from "../../types/Product";
+import { Link } from "react-router-dom";
+
 import { productDeleted } from "../../actions/products";
+import Product from "../../types/Product";
 
 interface Props {
   product: Product;
