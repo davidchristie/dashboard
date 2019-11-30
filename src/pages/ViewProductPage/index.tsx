@@ -4,10 +4,11 @@ import { useRouteMatch } from "react-router";
 
 import Heading from "../../components/Heading";
 import Topbar from "../../components/Topbar";
-import { productDetailsSelector } from "../../selectors/products";
-import Product from "../../types/Product";
-import State from "../../types/State";
+import product, { Product } from "../../models/product";
+import { State } from "../../store";
 import NotFoundPage from "../NotFoundPage";
+
+const { detailsSelector } = product;
 
 const ViewProductPage: React.FunctionComponent = () => {
   const {
@@ -15,7 +16,7 @@ const ViewProductPage: React.FunctionComponent = () => {
   } = useRouteMatch();
 
   const product = useSelector<State, Product | undefined>(state =>
-    productDetailsSelector(state, productId)
+    detailsSelector(state, productId)
   );
 
   if (!product) {

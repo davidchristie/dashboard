@@ -6,16 +6,16 @@ import { itHasLink, itHasNavigationLinks } from "../../testing/links";
 import { describeRender } from "../../testing/render";
 import ProductListPage from ".";
 
-describeRender("product list page", <ProductListPage />, getResult => {
-  itHasHeading("Products", getResult);
+describeRender("order list page", <ProductListPage />, getResult => {
+  itHasHeading("Orders", getResult);
 
-  it("displays the list of products", () => {
-    state.product.list.forEach(product => {
-      getResult().getByText(product.name);
+  it("displays the list of orders", () => {
+    state.order.list.forEach(order => {
+      getResult().getByText(order.name);
     });
   });
 
-  itHasLink("Create", "/products/create", getResult);
+  itHasLink("Create", "/orders/create", getResult);
 
   itHasNavigationLinks(getResult);
 });

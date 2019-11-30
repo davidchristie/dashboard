@@ -1,25 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { productDeleted } from "../../actions/products";
-import Product from "../../types/Product";
+import product, { Product } from "../../models/product";
 
 interface Props {
   product: Product;
 }
 
-const ProductSummary: React.FunctionComponent<Props> = ({ product }) => {
-  const dispatch = useDispatch();
+const { useDelete } = product;
 
-  const handleDeleteButtonClick = () => {
-    dispatch(productDeleted(product));
-  };
+const ProductSummary: React.FunctionComponent<Props> = ({ product }) => {
+  const deleteProduct = useDelete(product);
 
   return (
     <div className="ProductSummary">
       <Link to={`/products/${product.id}`}>{product.name}</Link>
-      <button onClick={handleDeleteButtonClick}>Delete</button>
+      <button onClick={deleteProduct}>Delete</button>
     </div>
   );
 };

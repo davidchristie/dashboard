@@ -6,7 +6,9 @@ import { Provider } from "react-redux";
 
 import history from "./history";
 import Routes from "./Routes";
-import store from "./store";
+import { createReduxStore } from "./store";
+
+const store = createReduxStore();
 
 const Application: React.FunctionComponent = () => {
   return (

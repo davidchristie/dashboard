@@ -1,7 +1,7 @@
 import { fireEvent } from "@testing-library/react";
 import React from "react";
 
-import product from "../../models/product";
+import order from "../../models/order";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";
 import { store } from "../../testing/providers";
@@ -12,19 +12,19 @@ beforeEach(() => {
   store.dispatch = jest.fn();
 });
 
-describeRender("create product page", <CreateProductPage />, getResult => {
-  itHasHeading("Create Product", getResult);
+describeRender("create order page", <CreateProductPage />, getResult => {
+  itHasHeading("Create Order", getResult);
 
   itHasNavigationLinks(getResult);
 
   describe("when valid input values are entered", () => {
     const values = {
-      name: "New Product"
+      name: "New Order"
     };
 
     beforeEach(() => {
       fireEvent.change(getResult().getByLabelText("Name"), {
-        target: { value: "New Product" }
+        target: { value: "New Order" }
       });
     });
 
@@ -33,9 +33,9 @@ describeRender("create product page", <CreateProductPage />, getResult => {
         fireEvent.click(getResult().getByText("Save"));
       });
 
-      it("dispatches a product created action", () => {
+      it("dispatches a order created action", () => {
         expect(store.dispatch).toBeCalledWith(
-          product.created({
+          order.created({
             id: expect.any(String),
             name: values.name
           })

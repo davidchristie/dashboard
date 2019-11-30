@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-import { productListSelector } from "../../selectors/products";
+import product from "../../models/product";
 import ProductSummary from "../ProductSummary";
 
 const ProductList: React.FunctionComponent = () => {
-  const list = useSelector(productListSelector);
+  const list = useSelector(product.listSelector);
 
   return (
     <div className="ProductList">

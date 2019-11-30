@@ -1,4 +1,4 @@
-import Product from "../../types/Product";
+import { Product } from "../../models/product";
 
 export const product1: Product = {
   id: "9115d954-054e-4c5a-958b-c04c262a6a30",
