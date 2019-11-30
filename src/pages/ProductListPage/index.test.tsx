@@ -1,33 +1,25 @@
-import { fireEvent, render, RenderResult } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import React from "react";
 import state from "../../testing/data/state";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";
-import { AllProviders } from "../../testing/providers";
+import { describeRender } from "../../testing/render";
 import ProductListPage from ".";
 
-describe("product list page", () => {
-  let result: RenderResult;
-
-  beforeEach(() => {
-    result = render(<ProductListPage />, {
-      wrapper: AllProviders
-    });
-  });
-
-  itHasHeading("Products", () => result);
+describeRender("product list page", <ProductListPage />, getResult => {
+  itHasHeading("Products", getResult);
 
   it("displays the list of products", async () => {
     state.products.list.forEach(product => {
-      result.getByText(product.name);
+      getResult().getByText(product.name);
     });
   });
 
-  itHasNavigationLinks(() => result);
+  itHasNavigationLinks(getResult);
 
   describe("when create button is clicked", () => {
     beforeEach(() => {
-      fireEvent.click(result.getByText("Create"));
+      fireEvent.click(getResult().getByText("Create"));
     });
 
     it("goes to the create product page", async () => {

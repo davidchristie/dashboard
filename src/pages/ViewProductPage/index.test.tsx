@@ -1,50 +1,44 @@
-import { render, RenderResult } from "@testing-library/react";
+import { RenderResult } from "@testing-library/react";
 import React from "react";
 import { Route } from "react-router-dom";
 import { product1 } from "../../testing/data/products";
-import ViewProductPage from ".";
 import { itHasNavigationLinks } from "../../testing/links";
-import { AllProviders } from "../../testing/providers";
+import { describeRender } from "../../testing/render";
+import ViewProductPage from ".";
+import { itHasHeading } from "../../testing/content";
 
-const push = (url: string) => {
-  window.history.pushState(undefined, "", url);
-};
+const describeViewProductPage = (
+  url: string,
+  fn: (getResult: () => RenderResult) => void
+) => {
+  beforeEach(async () => {
+    window.history.pushState(undefined, "", url);
+  });
 
-const renderViewProductPage = () => {
-  return render(
+  describeRender(
+    "product list page",
     <Route component={ViewProductPage} exact path={`/products/:productId`} />,
-    {
-      wrapper: AllProviders
-    }
+    fn
   );
 };
 
-describe("product list page", () => {
-  let result: RenderResult;
-
-  describe("when the product exists", () => {
-    beforeEach(() => {
-      push(`/products/${product1.id}`);
-      result = renderViewProductPage();
+describe("when the product exists", () => {
+  describeViewProductPage(`/products/${product1.id}`, getResult => {
+    it("displays the name of the product", () => {
+      getResult().getByText(product1.name);
     });
 
-    it("displays the name of the product", async () => {
-      result.getByText(product1.name);
-    });
-
-    itHasNavigationLinks(() => result);
+    itHasNavigationLinks(getResult);
   });
+});
 
-  describe("when the product does not exist", () => {
-    beforeEach(() => {
-      push("/products/c441f181-ceea-4d05-bacc-32d533069244");
-      result = renderViewProductPage();
-    });
+describe("when the product does not exist", () => {
+  describeViewProductPage(
+    `/products/c441f181-ceea-4d05-bacc-32d533069244`,
+    getResult => {
+      itHasHeading("Not Found", getResult);
 
-    it("displays the not found page", async () => {
-      result.getByText("Not Found");
-    });
-
-    itHasNavigationLinks(() => result);
-  });
+      itHasNavigationLinks(getResult);
+    }
+  );
 });

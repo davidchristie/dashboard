@@ -1,18 +1,11 @@
-import { render, RenderResult } from "@testing-library/react";
 import React from "react";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";
+import { describeRender } from "../../testing/render";
 import NotFoundPage from ".";
-import { AllProviders } from "../../testing/providers";
 
-describe("not found page", () => {
-  let result: RenderResult;
+describeRender("not found page", <NotFoundPage />, getResult => {
+  itHasHeading("Not Found", getResult);
 
-  beforeEach(() => {
-    result = render(<NotFoundPage />, { wrapper: AllProviders });
-  });
-
-  itHasHeading("Not Found", () => result);
-
-  itHasNavigationLinks(() => result);
+  itHasNavigationLinks(getResult);
 });

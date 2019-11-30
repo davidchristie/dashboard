@@ -1,24 +1,20 @@
-import { fireEvent, render, RenderResult } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import React from "react";
-import { Dispatch } from "redux";
 import { productCreated } from "../../actions/products";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";
-import { AllProviders, store } from "../../testing/providers";
+import { store } from "../../testing/providers";
+import { describeRender } from "../../testing/render";
 import CreateProductPage from ".";
 
-describe("create product page", () => {
-  let dispatch: Dispatch;
-  let result: RenderResult;
+beforeEach(() => {
+  store.dispatch = jest.fn();
+});
 
-  beforeEach(() => {
-    store.dispatch = dispatch = jest.fn();
-    result = render(<CreateProductPage />, { wrapper: AllProviders });
-  });
+describeRender("create product page", <CreateProductPage />, getResult => {
+  itHasHeading("Create Product", getResult);
 
-  itHasHeading("Create Product", () => result);
-
-  itHasNavigationLinks(() => result);
+  itHasNavigationLinks(getResult);
 
   describe("when valid input values are entered", () => {
     const values = {
@@ -26,18 +22,18 @@ describe("create product page", () => {
     };
 
     beforeEach(() => {
-      fireEvent.change(result.getByLabelText("Name"), {
+      fireEvent.change(getResult().getByLabelText("Name"), {
         target: { value: "New Product" }
       });
     });
 
     describe("when save button is clicked", () => {
       beforeEach(() => {
-        fireEvent.click(result.getByText("Save"));
+        fireEvent.click(getResult().getByText("Save"));
       });
 
       it("dispatches a product created action", () => {
-        expect(dispatch).toBeCalledWith(
+        expect(store.dispatch).toBeCalledWith(
           productCreated({
             id: expect.any(String),
             name: values.name
