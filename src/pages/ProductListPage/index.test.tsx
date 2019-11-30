@@ -1,9 +1,8 @@
-import { fireEvent } from "@testing-library/react";
 import React from "react";
 
 import { itHasHeading } from "../../testing/content";
 import state from "../../testing/data/state";
-import { itHasNavigationLinks } from "../../testing/links";
+import { itHasLink, itHasNavigationLinks } from "../../testing/links";
 import { describeRender } from "../../testing/render";
 import ProductListPage from ".";
 
@@ -16,15 +15,7 @@ describeRender("product list page", <ProductListPage />, getResult => {
     });
   });
 
+  itHasLink("Create", "/products/create", getResult);
+
   itHasNavigationLinks(getResult);
-
-  describe("when create button is clicked", () => {
-    beforeEach(() => {
-      fireEvent.click(getResult().getByText("Create"));
-    });
-
-    it("goes to the create product page", () => {
-      expect(window.location.pathname).toBe("/products/create");
-    });
-  });
 });
