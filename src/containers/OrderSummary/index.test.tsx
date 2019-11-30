@@ -1,7 +1,7 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 
-import { orderDeleted } from "../../actions/orders";
+import order from "../../entities/order";
 import { order1 } from "../../testing/data/orders";
 import { AllProviders, store } from "../../testing/providers";
 import OrderSummary from ".";
@@ -27,7 +27,7 @@ describe("order summary container", () => {
     });
 
     it("dispatches a order deleted action", () => {
-      expect(dispatch).toBeCalledWith(orderDeleted(order1));
+      expect(dispatch).toBeCalledWith(order.deleted(order1));
     });
   });
 });

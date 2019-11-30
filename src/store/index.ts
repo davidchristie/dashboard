@@ -5,6 +5,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import history from "../history";
 import rootReducer from "../reducers";
 
+export type State = ReturnType<typeof rootReducer>;
+
 export const createReduxStore = () => {
   const composedEnhancers = composeWithDevTools(
     applyMiddleware(routerMiddleware(history))

@@ -1,4 +1,4 @@
-import State from "../../types/State";
+import { State } from "../../store";
 import { order1, order2 } from "./orders";
 import { product1, product2 } from "./products";
 

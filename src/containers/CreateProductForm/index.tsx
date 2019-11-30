@@ -3,8 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import uuid from "uuid/v4";
 
-import { productCreated } from "../../actions/products";
-import Product from "../../types/Product";
+import product from "../../entities/product";
 import useFormState from "./useFormState";
 
 const CreateProductForm: React.FunctionComponent = () => {
@@ -13,13 +12,12 @@ const CreateProductForm: React.FunctionComponent = () => {
 
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
-    const product: Product = {
-      ...values,
-      id: uuid()
-    };
-
-    dispatch(productCreated(product));
+    dispatch(
+      product.created({
+        ...values,
+        id: uuid()
+      })
+    );
     dispatch(push("/products"));
   };
 

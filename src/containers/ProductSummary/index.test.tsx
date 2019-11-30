@@ -1,7 +1,7 @@
 import { fireEvent, render, RenderResult } from "@testing-library/react";
 import React from "react";
 
-import { productDeleted } from "../../actions/products";
+import product from "../../entities/product";
 import { product1 } from "../../testing/data/products";
 import { AllProviders, store } from "../../testing/providers";
 import ProductSummary from ".";
@@ -27,7 +27,7 @@ describe("product summary container", () => {
     });
 
     it("dispatches a product deleted action", () => {
-      expect(dispatch).toBeCalledWith(productDeleted(product1));
+      expect(dispatch).toBeCalledWith(product.deleted(product1));
     });
   });
 });

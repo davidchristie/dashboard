@@ -1,4 +1,4 @@
-import { orderCreated, orderDeleted } from "../../../actions/orders";
+import order from "../../../entities/order";
 import { order1, order2 } from "../../../testing/data/orders";
 import detailsReducer from ".";
 
@@ -7,7 +7,7 @@ describe("order details reducer", () => {
     const previousState = {
       [order1.id]: order1
     };
-    const action = orderCreated(order2);
+    const action = order.created(order2);
     const nextState = detailsReducer(previousState, action);
     expect(nextState).toEqual({
       [order1.id]: order1,
@@ -20,7 +20,7 @@ describe("order details reducer", () => {
       [order1.id]: order1,
       [order2.id]: order2
     };
-    const action = orderDeleted(order1);
+    const action = order.deleted(order1);
     const nextState = detailsReducer(previousState, action);
     expect(nextState).toEqual({
       [order2.id]: order2

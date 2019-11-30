@@ -2,12 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { productDeleted } from "../../actions/products";
-import Product from "../../types/Product";
+import product, { Product } from "../../entities/product";
 
 interface Props {
   product: Product;
 }
+
+const productDeleted = product.deleted;
 
 const ProductSummary: React.FunctionComponent<Props> = ({ product }) => {
   const dispatch = useDispatch();

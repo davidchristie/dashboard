@@ -3,8 +3,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import uuid from "uuid/v4";
 
-import { orderCreated } from "../../actions/orders";
-import Order from "../../types/Order";
+import order from "../../entities/order";
 import useFormState from "./useFormState";
 
 const CreateOrderForm: React.FunctionComponent = () => {
@@ -13,13 +12,12 @@ const CreateOrderForm: React.FunctionComponent = () => {
 
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-
-    const order: Order = {
-      ...values,
-      id: uuid()
-    };
-
-    dispatch(orderCreated(order));
+    dispatch(
+      order.created({
+        ...values,
+        id: uuid()
+      })
+    );
     dispatch(push("/orders"));
   };
 

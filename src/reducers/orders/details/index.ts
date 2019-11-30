@@ -1,18 +1,17 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit";
 
-import { ORDER_CREATED, ORDER_DELETED } from "../../../actions/orders";
-import Order from "../../../types/Order";
+import order, { Order } from "../../../entities/order";
 
 export default createReducer<{ [id: string]: Order }>(
   {},
   {
-    [ORDER_CREATED]: (state, action: PayloadAction<Order>) => {
+    [order.createdActionType]: (state, action: PayloadAction<Order>) => {
       return {
         ...state,
         [action.payload.id]: action.payload
       };
     },
-    [ORDER_DELETED]: (state, action: PayloadAction<Order>) => {
+    [order.deletedActionType]: (state, action: PayloadAction<Order>) => {
       const { [action.payload.id]: deletedOrder, ...otherOrders } = state;
       return otherOrders;
     }

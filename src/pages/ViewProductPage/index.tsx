@@ -4,9 +4,9 @@ import { useRouteMatch } from "react-router";
 
 import Heading from "../../components/Heading";
 import Topbar from "../../components/Topbar";
+import { Product } from "../../entities/product";
 import { productDetailsSelector } from "../../selectors/products";
-import Product from "../../types/Product";
-import State from "../../types/State";
+import { State } from "../../store";
 import NotFoundPage from "../NotFoundPage";
 
 const ViewProductPage: React.FunctionComponent = () => {

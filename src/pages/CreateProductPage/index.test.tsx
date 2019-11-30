@@ -1,7 +1,7 @@
 import { fireEvent } from "@testing-library/react";
 import React from "react";
 
-import { productCreated } from "../../actions/products";
+import product from "../../entities/product";
 import { itHasHeading } from "../../testing/content";
 import { itHasNavigationLinks } from "../../testing/links";
 import { store } from "../../testing/providers";
@@ -35,7 +35,7 @@ describeRender("create product page", <CreateProductPage />, getResult => {
 
       it("dispatches a product created action", () => {
         expect(store.dispatch).toBeCalledWith(
-          productCreated({
+          product.created({
             id: expect.any(String),
             name: values.name
           })

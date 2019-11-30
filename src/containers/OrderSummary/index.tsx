@@ -2,12 +2,13 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { orderDeleted } from "../../actions/orders";
-import Order from "../../types/Order";
+import order, { Order } from "../../entities/order";
 
 interface Props {
   order: Order;
 }
+
+const orderDeleted = order.deleted;
 
 const OrderSummary: React.FunctionComponent<Props> = ({ order }) => {
   const dispatch = useDispatch();
