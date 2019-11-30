@@ -2,12 +2,14 @@ import { push } from "connected-react-router";
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import useFormState from "../../hooks/useFormState";
 import product from "../../models/product";
-import useFormState from "./useFormState";
 
 const CreateProductForm: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const { handleNameChange, values } = useFormState();
+  const { handleChange, values } = useFormState({
+    name: ""
+  });
   const createProduct = product.useCreate(values);
 
   const handleFormSubmit = (event: React.FormEvent) => {
@@ -20,7 +22,7 @@ const CreateProductForm: React.FunctionComponent = () => {
     <form className="CreateProductForm" onSubmit={handleFormSubmit}>
       <div>
         <label htmlFor="name">Name</label>
-        <input id="name" onChange={handleNameChange} value={values.name} />
+        <input id="name" onChange={handleChange("name")} value={values.name} />
       </div>
       <div>
         <button>Save</button>

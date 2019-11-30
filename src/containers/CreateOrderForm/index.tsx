@@ -2,12 +2,14 @@ import { push } from "connected-react-router";
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import useFormState from "../../hooks/useFormState";
 import order from "../../models/order";
-import useFormState from "./useFormState";
 
 const CreateOrderForm: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  const { handleNameChange, values } = useFormState();
+  const { handleChange, values } = useFormState({
+    name: ""
+  });
 
   const createOrder = order.useCreate(values);
 
@@ -21,7 +23,7 @@ const CreateOrderForm: React.FunctionComponent = () => {
     <form className="CreateOrderForm" onSubmit={handleFormSubmit}>
       <div>
         <label htmlFor="name">Name</label>
-        <input id="name" onChange={handleNameChange} value={values.name} />
+        <input id="name" onChange={handleChange("name")} value={values.name} />
       </div>
       <div>
         <button>Save</button>

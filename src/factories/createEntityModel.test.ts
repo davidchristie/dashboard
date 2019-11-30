@@ -1,10 +1,9 @@
 import { Product } from "../models/product";
 import { product1, product2 } from "../testing/data/products";
 import createEntityModel, { EntityModel } from "./createEntityModel";
-import Entity from "./Entity";
 
 describe("entity model", () => {
-  let entity: EntityModel<Entity>;
+  let entity: EntityModel<Product>;
 
   beforeEach(() => {
     entity = createEntityModel<Product>("product");
