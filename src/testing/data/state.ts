@@ -1,7 +1,15 @@
 import State from "../../types/State";
+import { order1, order2 } from "./orders";
 import { product1, product2 } from "./products";
 
 const state: State = {
+  orders: {
+    details: {
+      [order1.id]: order1,
+      [order2.id]: order2
+    },
+    list: [order1, order2]
+  },
   products: {
     details: {
       [product1.id]: product1,
