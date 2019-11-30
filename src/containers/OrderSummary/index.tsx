@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import order, { Order } from "../../models/order";
@@ -8,19 +7,15 @@ interface Props {
   order: Order;
 }
 
-const orderDeleted = order.deleted;
+const { useDelete } = order;
 
 const OrderSummary: React.FunctionComponent<Props> = ({ order }) => {
-  const dispatch = useDispatch();
-
-  const handleDeleteButtonClick = () => {
-    dispatch(orderDeleted(order));
-  };
+  const deleteOrder = useDelete(order);
 
   return (
     <div className="OrderSummary">
       <Link to={`/orders/${order.id}`}>{order.name}</Link>
-      <button onClick={handleDeleteButtonClick}>Delete</button>
+      <button onClick={deleteOrder}>Delete</button>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import { push } from "connected-react-router";
 import React from "react";
 import { useDispatch } from "react-redux";
-import uuid from "uuid/v4";
 
 import order from "../../models/order";
 import useFormState from "./useFormState";
@@ -10,14 +9,11 @@ const CreateOrderForm: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const { handleNameChange, values } = useFormState();
 
+  const createOrder = order.useCreate(values);
+
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    dispatch(
-      order.created({
-        ...values,
-        id: uuid()
-      })
-    );
+    createOrder();
     dispatch(push("/orders"));
   };
 
