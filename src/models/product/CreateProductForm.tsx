@@ -1,26 +1,24 @@
-import { push } from "connected-react-router";
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import useFormState from "../../hooks/useFormState";
-import order from "../../models/order";
+import { Product } from ".";
 
-const CreateOrderForm: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
+interface Props {
+  onSave: (product: Omit<Product, "id">) => void;
+}
+
+const CreateProductForm: React.FunctionComponent<Props> = ({ onSave }) => {
   const { handleChange, values } = useFormState({
     name: ""
   });
 
-  const createOrder = order.useCreate(values);
-
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    createOrder();
-    dispatch(push("/orders"));
+    onSave(values);
   };
 
   return (
-    <form className="CreateOrderForm" onSubmit={handleFormSubmit}>
+    <form className="CreateProductForm" onSubmit={handleFormSubmit}>
       <div>
         <label htmlFor="name">Name</label>
         <input id="name" onChange={handleChange("name")} value={values.name} />
@@ -32,4 +30,4 @@ const CreateOrderForm: React.FunctionComponent = () => {
   );
 };
 
-export default CreateOrderForm;
+export default CreateProductForm;

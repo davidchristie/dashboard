@@ -1,14 +1,7 @@
-import { Product } from "../models/product";
 import { product1, product2 } from "../testing/data/products";
-import createEntityModel, { EntityModel } from "./createEntityModel";
+import model from "../testing/model";
 
 describe("entity model reducer", () => {
-  let entity: EntityModel<Product>;
-
-  beforeEach(() => {
-    entity = createEntityModel<Product>("product");
-  });
-
   it("adds created entities to state", () => {
     const previousState = {
       details: {
@@ -16,7 +9,7 @@ describe("entity model reducer", () => {
       },
       list: [product1]
     };
-    const nextState = entity.reducer(previousState, entity.created(product2));
+    const nextState = model.reducer(previousState, model.created(product2));
     expect(nextState).toEqual({
       details: {
         [product1.id]: product1,
@@ -34,7 +27,7 @@ describe("entity model reducer", () => {
       },
       list: [product1, product2]
     };
-    const nextState = entity.reducer(previousState, entity.deleted(product1));
+    const nextState = model.reducer(previousState, model.deleted(product1));
     expect(nextState).toEqual({
       details: {
         [product2.id]: product2

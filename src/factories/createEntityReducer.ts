@@ -57,7 +57,7 @@ const createEntityReducer = <T extends Entity>(
   actions: EntityActions<T>
 ): EntityReducer<T> => {
   return {
-    reducer: combineReducers({
+    reducer: combineReducers<EntityState<T>>({
       details: createDetailsReducer<T>(actions),
       list: createListReducer<T>(actions)
     })

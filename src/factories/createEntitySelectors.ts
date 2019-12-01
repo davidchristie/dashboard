@@ -8,6 +8,10 @@ export interface EntitySelectors<T extends Entity> {
   listSelector: (state: unknown) => T[];
 }
 
+interface Input {
+  plural: string;
+}
+
 const isEntityState = <T extends Entity>(
   state: any
 ): state is EntityState<T> => {
@@ -18,10 +22,10 @@ const isEntityState = <T extends Entity>(
   );
 };
 
-const createEntitySelector = <T extends Entity>(
-  entityType: string
-): EntitySelectors<T> => {
-  const entitySelector = (state: any): unknown => state[entityType];
+const createEntitySelector = <T extends Entity>({
+  plural
+}: Input): EntitySelectors<T> => {
+  const entitySelector = (state: any): unknown => state[plural.toLowerCase()];
 
   const detailsSelector = (state: unknown, id: string): T | undefined => {
     const entity = entitySelector(state);

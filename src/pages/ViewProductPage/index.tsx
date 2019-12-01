@@ -5,7 +5,6 @@ import { useRouteMatch } from "react-router";
 import Heading from "../../components/Heading";
 import Topbar from "../../components/Topbar";
 import product, { Product } from "../../models/product";
-import { State } from "../../store";
 import NotFoundPage from "../NotFoundPage";
 
 const { detailsSelector } = product;
@@ -15,7 +14,7 @@ const ViewProductPage: React.FunctionComponent = () => {
     params: { productId }
   } = useRouteMatch();
 
-  const product = useSelector<State, Product | undefined>(state =>
+  const product = useSelector<unknown, Product | undefined>(state =>
     detailsSelector(state, productId)
   );
 

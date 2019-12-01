@@ -10,7 +10,7 @@ describeRender("product list page", <ProductListPage />, getResult => {
   itHasHeading("Products", getResult);
 
   it("displays the list of products", () => {
-    state.product.list.forEach(product => {
+    state.products.list.forEach(product => {
       getResult().getByText(product.name);
     });
   });

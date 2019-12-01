@@ -2,11 +2,11 @@
 
 exports[`redux store initial state matches snapshot 1`] = `
 Object {
-  "order": Object {
+  "orders": Object {
     "details": Object {},
     "list": Array [],
   },
-  "product": Object {
+  "products": Object {
     "details": Object {},
     "list": Array [],
   },
