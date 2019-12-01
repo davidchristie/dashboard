@@ -31,19 +31,27 @@ export interface Input<T> {
   singular: string;
 }
 
-const createEntityModel = <T extends Entity>(
-  input: Input<T>
-): EntityModel<T> => {
+const createStateManagement = <T extends Entity>(input: Input<T>) => {
   const actions = createEntityActions<T>(input.singular);
   const selectors = createEntitySelectors<T>({
     plural: input.plural
   });
-  const reducer = createEntityReducer<T>(actions);
-  const hooks = createEntityHooks({
+  return {
     actions,
-    plural: input.plural,
-    selectors
-  });
+    selectors,
+    reducer: createEntityReducer<T>(actions),
+    hooks: createEntityHooks({
+      actions,
+      plural: input.plural,
+      selectors
+    })
+  };
+};
+
+const createComponents = <T extends Entity>(
+  input: Input<T>,
+  hooks: EntityHooks<T>
+) => {
   const components = createEntityComponents({
     Create: input.Create,
     List: input.List,
@@ -51,10 +59,20 @@ const createEntityModel = <T extends Entity>(
     plural: input.plural,
     singular: input.singular
   });
-  const routes = createEntityRoutes({
+  return {
     components,
-    plural: input.plural
-  });
+    routes: createEntityRoutes({
+      components,
+      plural: input.plural
+    })
+  };
+};
+
+const createEntityModel = <T extends Entity>(
+  input: Input<T>
+): EntityModel<T> => {
+  const { actions, hooks, selectors, reducer } = createStateManagement(input);
+  const { components, routes } = createComponents(input, hooks);
   return {
     ...actions,
     ...components,
