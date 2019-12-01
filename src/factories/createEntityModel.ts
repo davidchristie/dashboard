@@ -2,7 +2,9 @@ import { ComponentType } from "react";
 
 import createEntityActions, { EntityActions } from "./createEntityActions";
 import createEntityComponents, {
-  EntityComponents
+  CreateProps,
+  EntityComponents,
+  ListProps
 } from "./createEntityComponents";
 import createEntityHooks, { EntityHooks } from "./createEntityHooks";
 import createEntityReducer, { EntityReducer } from "./createEntityReducer";
@@ -23,13 +25,8 @@ export type EntityModel<T extends Entity> = EntityActions<T> &
   };
 
 export interface Input<T> {
-  Create: ComponentType<{
-    onSave: (values: Omit<T, "id">) => void;
-  }>;
-  List: React.ComponentType<{
-    list: T[];
-    onDelete: (entity: T) => void;
-  }>;
+  Create: ComponentType<CreateProps<T>>;
+  List: React.ComponentType<ListProps<T>>;
   plural: string;
   singular: string;
 }

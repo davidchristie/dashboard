@@ -8,14 +8,18 @@ import Entity from "./Entity";
 
 export type EntityComponents = ReturnType<typeof createEntityComponents>;
 
+export interface CreateProps<T> {
+  onSave: (values: Omit<T, "id">) => void;
+}
+
+export interface ListProps<T> {
+  list: T[];
+  onDelete: (entity: T) => void;
+}
+
 interface Input<T extends Entity> {
-  Create: React.ComponentType<{
-    onSave: (values: Omit<T, "id">) => void;
-  }>;
-  List: React.ComponentType<{
-    list: T[];
-    onDelete: (entity: T) => void;
-  }>;
+  Create: React.ComponentType<CreateProps<T>>;
+  List: React.ComponentType<ListProps<T>>;
   hooks: EntityHooks<T>;
   plural: string;
   singular: string;
