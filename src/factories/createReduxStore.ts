@@ -9,7 +9,7 @@ import Entity from "./Entity";
 export const createReduxStore = (models: EntityModel<Entity>[]) => {
   const entityReducers = models.reduce<{ [plural: string]: Reducer }>(
     (accumulator, current) => {
-      accumulator[current.plural] = current.reducer;
+      accumulator[current.plural.toLowerCase()] = current.reducer;
       return accumulator;
     },
     {}
