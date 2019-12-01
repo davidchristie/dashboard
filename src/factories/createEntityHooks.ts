@@ -27,7 +27,7 @@ const createEntityHooks = <T extends Entity>({
   const useCreate = () => {
     const dispatch = useDispatch();
     return (values: Omit<T, "id">) => {
-      dispatch(push("/")); // TODO: Redirect to the entity list page.
+      dispatch(push(`/${plural.toLowerCase()}`));
       dispatch(
         actions.created({
           ...values,

@@ -10,16 +10,14 @@ import { createReduxStore } from "./store";
 
 const store = createReduxStore();
 
-const Application: React.FunctionComponent = () => {
-  return (
-    <div className="Application">
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <Routes />
-        </ConnectedRouter>
-      </Provider>
-    </div>
-  );
-};
+const Application: React.FunctionComponent = () => (
+  <div className="Application">
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <Routes />
+      </ConnectedRouter>
+    </Provider>
+  </div>
+);
 
 export default Application;

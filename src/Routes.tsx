@@ -1,23 +1,17 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 
-import CreateOrderPage from "./pages/CreateOrderPage";
-import CreateProductPage from "./pages/CreateProductPage";
+import order from "./models/order";
+import product from "./models/product";
 import NotFoundPage from "./pages/NotFoundPage";
-import OrderListPage from "./pages/OrderListPage";
 import OverviewPage from "./pages/OverviewPage";
-import ProductListPage from "./pages/ProductListPage";
-import ViewProductPage from "./pages/ViewProductPage";
 
 const Routes: React.FunctionComponent = () => (
   <div className="Routes">
     <Switch>
       <Route component={OverviewPage} exact path="/" />
-      <Route component={OrderListPage} exact path="/orders" />
-      <Route component={CreateOrderPage} exact path="/orders/create" />
-      <Route component={ProductListPage} exact path="/products" />
-      <Route component={CreateProductPage} exact path="/products/create" />
-      <Route component={ViewProductPage} exact path="/products/:productId" />
+      {order.routes}
+      {product.routes}
       <Route component={NotFoundPage} path="*" />
     </Switch>
   </div>

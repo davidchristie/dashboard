@@ -6,6 +6,7 @@ import createEntityComponents, {
 } from "./createEntityComponents";
 import createEntityHooks, { EntityHooks } from "./createEntityHooks";
 import createEntityReducer, { EntityReducer } from "./createEntityReducer";
+import createEntityRoutes, { EntityRoutes } from "./createEntityRoutes";
 import createEntitySelectors, {
   EntitySelectors
 } from "./createEntitySelectors";
@@ -15,7 +16,8 @@ export type EntityModel<T extends Entity> = EntityActions<T> &
   EntityComponents &
   EntityHooks<T> &
   EntitySelectors<T> &
-  EntityReducer<T>;
+  EntityReducer<T> &
+  EntityRoutes;
 
 export interface Input<T> {
   Create: ComponentType<{
@@ -49,12 +51,17 @@ const createEntityModel = <T extends Entity>(
     plural: input.plural,
     singular: input.singular
   });
+  const routes = createEntityRoutes({
+    components,
+    plural: input.plural
+  });
   return {
     ...actions,
     ...components,
     ...hooks,
     ...selectors,
-    ...reducer
+    ...reducer,
+    ...routes
   };
 };
 

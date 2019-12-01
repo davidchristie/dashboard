@@ -1,15 +1,15 @@
 import createEntityModel from "../../factories/createEntityModel";
 import Entity from "../../factories/Entity";
-import CreateOrderForm from "./CreateOrderForm";
-import OrderList from "./OrderList";
+import CreateProductForm from "../product/CreateProductForm";
+import ProductList from "../product/ProductList";
 
 export interface Order extends Entity {
   name: string;
 }
 
 export default createEntityModel<Order>({
-  Create: CreateOrderForm,
-  List: OrderList,
+  Create: CreateProductForm,
+  List: ProductList,
   plural: "Orders",
   singular: "Order"
 });

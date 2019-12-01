@@ -31,15 +31,11 @@ const createEntityComponents = <T extends Entity>({
   const CreatePage: React.FunctionComponent = () => {
     const createProduct = hooks.useCreate();
 
-    const handleSave = (values: Omit<T, "id">) => {
-      createProduct(values);
-    };
-
     return (
       <div className={`Create${singular}Page`}>
         <Topbar />
         <Heading>Create {singular}</Heading>
-        <Create onSave={handleSave} />
+        <Create onSave={createProduct} />
       </div>
     );
   };
