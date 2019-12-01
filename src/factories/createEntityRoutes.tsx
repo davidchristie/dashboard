@@ -19,11 +19,11 @@ const createEntityRoutes = <T extends Entity>({
   const routes = [
     {
       component: components.CreatePage,
-      path: `/${basePath}`
+      path: `/${basePath}/create`
     },
     {
       component: components.ListPage,
-      path: `/${basePath}/create`
+      path: `/${basePath}`
     }
   ].map(({ component, path }, index) => (
     <Route component={component} exact key={index} path={path} />

@@ -17,7 +17,10 @@ export type EntityModel<T extends Entity> = EntityActions<T> &
   EntityHooks<T> &
   EntitySelectors<T> &
   EntityReducer<T> &
-  EntityRoutes;
+  EntityRoutes & {
+    plural: string;
+    singular: string;
+  };
 
 export interface Input<T> {
   Create: ComponentType<{
@@ -61,7 +64,9 @@ const createEntityModel = <T extends Entity>(
     ...hooks,
     ...selectors,
     ...reducer,
-    ...routes
+    ...routes,
+    plural: input.plural,
+    singular: input.singular
   };
 };
 

@@ -1,22 +1,14 @@
 import "./Application.css";
 
-import { ConnectedRouter } from "connected-react-router";
 import React from "react";
-import { Provider } from "react-redux";
 
-import history from "./history";
-import Routes from "./Routes";
-import { createReduxStore } from "./store";
-
-const store = createReduxStore();
+import Dashboard from "./Dashboard";
+import order from "./models/order";
+import product from "./models/product";
 
 const Application: React.FunctionComponent = () => (
   <div className="Application">
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Routes />
-      </ConnectedRouter>
-    </Provider>
+    <Dashboard models={[order, product]} />
   </div>
 );
 
