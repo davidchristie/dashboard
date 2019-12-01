@@ -1,37 +1,61 @@
-import { useDispatch } from "react-redux";
+import { push } from "connected-react-router";
+import { useDispatch, useSelector } from "react-redux";
 import uuid from "uuid/v4";
 
 import { EntityActions } from "./createEntityActions";
+import { EntitySelectors } from "./createEntitySelectors";
 import Entity from "./Entity";
 
 export interface EntityHooks<T extends Entity> {
-  useCreate: (entity: Omit<T, "id">) => () => void;
-  useDelete: (entity: T) => () => void;
+  useCreate: () => (values: Omit<T, "id">) => void;
+  useCreatePath: () => string;
+  useDelete: () => (entity: T) => void;
+  useList: () => T[];
+}
+
+interface Input<T extends Entity> {
+  actions: EntityActions<any>;
+  plural: string;
+  selectors: EntitySelectors<T>;
 }
 
 const createEntityHooks = <T extends Entity>({
-  created,
-  deleted
-}: EntityActions<any>): EntityHooks<T> => {
-  const useCreate = (entity: Omit<T, "id">) => {
+  actions,
+  plural,
+  selectors
+}: Input<T>): EntityHooks<T> => {
+  const useCreate = () => {
     const dispatch = useDispatch();
-    return () =>
+    return (values: Omit<T, "id">) => {
+      dispatch(push(`/${plural.toLowerCase()}`));
       dispatch(
-        created({
-          ...entity,
+        actions.created({
+          ...values,
           id: uuid()
         })
       );
+    };
   };
 
-  const useDelete = (entity: T) => {
+  const useCreatePath = () => `/${plural.toLowerCase()}/create`;
+
+  const useDelete = () => {
     const dispatch = useDispatch();
-    return () => dispatch(deleted(entity));
+    return (entity: T) => {
+      dispatch(actions.deleted(entity));
+    };
+  };
+
+  const useList = () => {
+    const list = useSelector(selectors.listSelector);
+    return list;
   };
 
   return {
     useCreate,
-    useDelete
+    useCreatePath,
+    useDelete,
+    useList
   };
 };
 
