@@ -7,10 +7,11 @@ import { AllProviders, store } from "../testing/providers";
 describe("entity model hooks", () => {
   describe("useDelete", () => {
     it("should dispatch an entity deleted action", () => {
+      store.dispatch = jest.fn();
+
       const { result } = renderHook(() => model.useDelete(), {
         wrapper: AllProviders
       });
-      store.dispatch = jest.fn();
 
       act(() => {
         result.current(product1);
