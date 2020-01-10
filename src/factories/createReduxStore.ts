@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import history from "../history";
 import { EntityModel } from "./createEntityModel";
+import createNavigationReducer from "./createNavigationReducer";
 import Entity from "./Entity";
 
 export const createReduxStore = (models: EntityModel<Entity>[]) => {
@@ -16,6 +17,7 @@ export const createReduxStore = (models: EntityModel<Entity>[]) => {
   );
   const rootReducer = combineReducers({
     ...entityReducers,
+    navigation: createNavigationReducer(models),
     router: connectRouter(history)
   });
   const composedEnhancers = composeWithDevTools(
