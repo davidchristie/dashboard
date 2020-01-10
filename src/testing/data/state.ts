@@ -16,6 +16,22 @@ const state = {
     },
     list: [product1, product2]
   },
+  navigation: {
+    items: [
+      {
+        text: "Overview",
+        to: "/"
+      },
+      {
+        text: "Orders",
+        to: "/orders"
+      },
+      {
+        text: "Products",
+        to: "/products"
+      }
+    ]
+  },
   router: {
     action: "POP",
     location: {
